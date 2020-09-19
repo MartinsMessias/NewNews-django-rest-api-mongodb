@@ -54,6 +54,6 @@ class Author(GenericAPIView):
 
     def delete(self, request, id, format=None):
         """ Deletar autor por id"""
-        autor = author_service.get_author(id)
-        author_service.delete_author(autor)
+        author = author_service.get_author(id)
+        author_service.delete_author(author)
         return Response(status=status.HTTP_204_NO_CONTENT)
