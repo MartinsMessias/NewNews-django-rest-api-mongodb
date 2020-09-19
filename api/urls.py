@@ -21,7 +21,7 @@ class DocsView(APIView):
         return Response(apidocs)
 
 router.register('news/', news_view.NewsList, basename='news')
-router.register('authors/', author_view.VagaList, basename='authors')
+router.register('authors/', author_view.AuthorList, basename='authors')
 
 urlpatterns = [
     path('', DocsView.as_view()),
