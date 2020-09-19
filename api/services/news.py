@@ -4,7 +4,7 @@ from ..models import News
 
 # Cadastrar notícia
 def create_news(news):
-    return News.objects.create(title=news.title, content=news.content, author=news.author)
+    return News.objects.create(title=news.title, content=news.content, author=news.author.id)
 
 # Listar todos as notícias
 def list_news():
