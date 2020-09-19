@@ -98,7 +98,7 @@ DATABASES = {
         'NAME': 'newnews',
         'USER': 'newnews',
         'PASSWORD': 'newnews',
-        'HOST': 'mongodb+srv://newnews:newnews@newnews.rrgxo.mongodb.net/NewNews?retryWrites=true&w=majority',
+        'HOST': 'mongodb://newnews:newnews@newnews.rrgxo.mongodb.net/NewNews?retryWrites=true&w=majority',
     }
 }
 
