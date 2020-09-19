@@ -29,6 +29,10 @@ class AuthorList(GenericAPIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @classmethod
+    def get_extra_actions(cls):
+        return []
+
 class Author(GenericAPIView):
 
     serializer_class = author_serializer.AuthorSerializer
@@ -57,3 +61,7 @@ class Author(GenericAPIView):
         author = author_service.get_author(id)
         author_service.delete_author(author)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @classmethod
+    def get_extra_actions(cls):
+        return []

@@ -31,6 +31,10 @@ class NewsList(GenericAPIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @classmethod
+    def get_extra_actions(cls):
+        return []
+
 class News(GenericAPIView):
 
     serializer_class = news_serializer.NewsSerializer
@@ -56,8 +60,13 @@ class News(GenericAPIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
+
     def delete(self, request, id, format=None):
         """ Deletar noticia por id"""
         news = news_service.get_news(id)
         news_service.delete_news(news)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @classmethod
+    def get_extra_actions(cls):
+        return []
