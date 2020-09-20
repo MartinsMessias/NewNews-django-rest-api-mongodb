@@ -15,7 +15,7 @@ class AuthorList(GenericAPIView):
     def get(self, request, format=None):
         """Listar autores"""
         authors = author_service.list_authors()
-        serializer = author_serializer.AuthorSerializer(authors, many=True)
+        serializer = author_serializer.AuthorSerializer(authors, context={'request': request}, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
