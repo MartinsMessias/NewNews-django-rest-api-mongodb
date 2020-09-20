@@ -20,13 +20,13 @@ class DocsView(APIView):
         }
         return Response(apidocs)
 
-router.register('news/', news_view.NewsList, basename='news')
-router.register('authors/', author_view.AuthorList, basename='authors')
+router.register('news', news_view.NewsList, basename='news')
+router.register('authors', author_view.AuthorList, basename='authors')
 
 urlpatterns = [
     path('', DocsView.as_view()),
     path('', include(router.urls)),
-    path('news/', news_view.NewsList.as_view(), name='news'),
+    # path('news/', news_view.NewsList, name='news'),
     path('news/<int:id>', news_view.News.as_view(), name='news_detail'),
     path('authors/', author_view.AuthorList.as_view(), name='authors'),
     path('authors/<int:id>', author_view.Author.as_view(), name='author_detail'),

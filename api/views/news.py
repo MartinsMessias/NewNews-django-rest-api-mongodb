@@ -1,4 +1,4 @@
-from rest_framework import status
+from rest_framework import status, filters, mixins, viewsets
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
@@ -7,10 +7,12 @@ from ..serializers import news as news_serializer
 from ..services import news as news_service
 from ..entities import news as news_entitie
 
-class NewsList(GenericAPIView):
+class NewsList(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
 
     serializer_class = news_serializer.NewsSerializer
     queryset = News.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ('title', 'content', 'author__name')
 
     def get(self, request, format=None):
         """Listar Notícias"""
@@ -25,15 +27,12 @@ class NewsList(GenericAPIView):
         if serializer.is_valid():
             title = serializer.validated_data["title"]
             content = serializer.validated_data["content"]
-            author = serializer.validated_data["author"]
+            author = serializer.validated_data["author__name"]
             new_news = news_entitie.News(title=title, content=content, author=author)
             news_service.create_news(new_news)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @classmethod
-    def get_extra_actions(cls):
-        return []
 
 class News(GenericAPIView):
 
