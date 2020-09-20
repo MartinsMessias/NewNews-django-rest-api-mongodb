@@ -13,13 +13,13 @@ class NewsList(GenericAPIView):
     queryset = News.objects.all()
 
     def get(self, request, format=None):
-        """Listar autores"""
+        """Listar Notícias"""
         news = news_service.list_news()
         serializer = news_serializer.NewsSerializer(news, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
-        """Cadastrar autor"""
+        """Cadastrar notícia"""
         serializer = news_serializer.NewsSerializer(data=request.data)
 
         if serializer.is_valid():

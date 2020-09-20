@@ -96,9 +96,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'newnews',
-        'USER': 'newnews',
-        'PASSWORD': 'newnews',
-        'HOST': 'mongodb://newnews:newnews@newnews.rrgxo.mongodb.net/NewNews?retryWrites=true&w=majority',
+        'HOST': 'mongodb+srv://newnews_user:3jbVeai6sE2BkPKQ@newnews.rrgxo.mongodb.net/newnews?ssl=true&ssl_cert_reqs=CERT_NONE&retryWrites=true',
+        'USER': 'newnews_user',
+        'PASSWORD': '3jbVeai6sE2BkPKQ',
     }
 }
 
