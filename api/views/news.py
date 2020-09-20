@@ -15,7 +15,7 @@ class NewsList(GenericAPIView):
     def get(self, request, format=None):
         """Listar Notícias"""
         news = news_service.list_news()
-        serializer = news_serializer.NewsSerializer(news, many=True)
+        serializer = news_serializer.NewsSerializer(news, context={'request': request}, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
