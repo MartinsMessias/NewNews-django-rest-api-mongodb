@@ -1,5 +1,6 @@
 from djongo import models
 
+
 class Author(models.Model):
     name = models.CharField(max_length=120, blank=False, null=False)
 
@@ -13,4 +14,3 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
-
