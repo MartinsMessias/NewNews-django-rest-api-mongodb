@@ -6,10 +6,11 @@ from ..models import News
 
 class NewsSerializer(serializers.ModelSerializer):
     links = serializers.SerializerMethodField()
+    author_name = serializers.CharField(source='author.name')
 
     class Meta:
         model = News
-        fields = ('title', 'content', 'author', 'links', )
+        fields = ('title', 'content', 'author_name', 'links', )
 
     def get_links(self, obj):
         try:

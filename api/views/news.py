@@ -31,7 +31,7 @@ class NewsList(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericV
         if serializer.is_valid():
             title = serializer.validated_data["title"]
             content = serializer.validated_data["content"]
-            author = serializer.validated_data["author__name"]
+            author = serializer.validated_data["author"]
             new_news = news_entitie.News(title=title, content=content, author=author)
             news_service.create_news(new_news)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
