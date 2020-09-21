@@ -1,4 +1,4 @@
-from rest_framework import status
+from rest_framework import status, mixins, viewsets
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
@@ -7,7 +7,7 @@ from ..serializers import author as author_serializer
 from ..services import author as author_service
 from ..entities import author as author_entitie
 
-class AuthorList(GenericAPIView):
+class AuthorList(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
 
     serializer_class = author_serializer.AuthorSerializer
     queryset = Author.objects.all()
@@ -29,9 +29,6 @@ class AuthorList(GenericAPIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @classmethod
-    def get_extra_actions(cls):
-        return []
 
 class Author(GenericAPIView):
 

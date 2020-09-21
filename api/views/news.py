@@ -2,7 +2,8 @@ from rest_framework import status, filters, mixins, viewsets
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
-from ..models import News
+from ..models import News as model_news
+from ..pagination import CustomPagination
 from ..serializers import news as news_serializer
 from ..services import news as news_service
 from ..entities import news as news_entitie
@@ -10,15 +11,18 @@ from ..entities import news as news_entitie
 class NewsList(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
 
     serializer_class = news_serializer.NewsSerializer
-    queryset = News.objects.all()
+    queryset = model_news.objects.all()
+
     filter_backends = [filters.SearchFilter]
     search_fields = ('title', 'content', 'author__name')
 
     def get(self, request, format=None):
         """Listar Notícias"""
+        pagination = CustomPagination()
         news = news_service.list_news()
-        serializer = news_serializer.NewsSerializer(news, context={'request': request}, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        results = pagination.paginate_queryset(news, request)
+        serializer = news_serializer.NewsSerializer(results, context={'request': request}, many=True)
+        return pagination.get_paginated_response(serializer.data)
 
     def post(self, request, format=None):
         """Cadastrar notícia"""
@@ -37,7 +41,7 @@ class NewsList(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericV
 class News(GenericAPIView):
 
     serializer_class = news_serializer.NewsSerializer
-    queryset = News.objects.all()
+    queryset = model_news.objects.all()
 
     def get(self, request, id, format=None):
         """Retorna a notícia pelo id"""
