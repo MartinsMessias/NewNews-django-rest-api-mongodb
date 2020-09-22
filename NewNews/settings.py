@@ -14,7 +14,7 @@ import os
 import environ
 
 env = environ.Env()
-
+environ.Env.read_env()
 # Configure Django App for Heroku.
 try:
     import django_heroku
