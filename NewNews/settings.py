@@ -20,7 +20,6 @@ import environ
 try:
     import django_heroku
     import dj_database_url
-    import whitenoise
 except ModuleNotFoundError:
     pass
 
@@ -83,7 +82,7 @@ ROOT_URLCONF = 'NewNews.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': []
+        'DIRS': [os.path.join(BASE_DIR, "templates")]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -113,10 +112,10 @@ DATABASES = {
     }
 }
 
-try:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-except:
-    pass
+# try:
+#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# except:
+#     pass
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
