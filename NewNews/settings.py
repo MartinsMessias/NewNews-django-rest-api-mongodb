@@ -18,14 +18,14 @@ environ.Env.read_env()
 # Configure Django App for Heroku.
 try:
     import django_heroku
-except ModuleNotFoundError:
+    import dj_database_url
+    import whitenoise
+except:
     pass
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -34,7 +34,7 @@ SECRET_KEY = env.str('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -154,9 +154,6 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
-
-VENV_PATH = os.path.dirname(BASE_DIR)
-STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 try:
     django_heroku.settings(locals())
 except:
