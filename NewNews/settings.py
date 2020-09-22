@@ -18,7 +18,6 @@ environ.Env.read_env()
 # Configure Django App for Heroku.
 try:
     import django_heroku
-    import dj_database_url
 except ModuleNotFoundError:
     pass
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
