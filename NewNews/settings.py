@@ -30,7 +30,11 @@ environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.join(BASE_DIR, "/static")
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -110,7 +114,10 @@ DATABASES = {
     }
 }
 
-
+try:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+except:
+    pass
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -158,8 +165,6 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 try:
     django_heroku.settings(locals())
