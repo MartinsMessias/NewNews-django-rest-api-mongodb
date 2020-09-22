@@ -1,3 +1,3 @@
 # NewNews
-#### EM DESENVOLVIMENTO...
-
+### API
+##### Cadastre autores, poste notícas e pesquise sobre algo.
