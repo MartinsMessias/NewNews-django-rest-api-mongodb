@@ -10,26 +10,24 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
-
 import os
-
 import environ
+
+env = environ.Env()
 
 # Configure Django App for Heroku.
 try:
     import django_heroku
     import dj_database_url
+    import whitenoise
 except ModuleNotFoundError:
     pass
-
-env = environ.Env()
-
-environ.Env.read_env()
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -50,10 +48,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'api.apps.ApiConfig',
     'corsheaders',
-    'rest_framework'
+    'rest_framework',
+    'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -147,12 +146,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, 'static'),
-]
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 5,
@@ -163,6 +158,8 @@ REST_FRAMEWORK = {
 }
 
 
+VENV_PATH = os.path.dirname(BASE_DIR)
+STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 try:
     django_heroku.settings(locals())
 except:
