@@ -7,7 +7,7 @@ from ..serializers import author as author_serializer
 from ..services import author as author_service
 from ..entities import author as author_entitie
 
-class AuthorList(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
+class AuthorList(mixins.CreateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
 
     serializer_class = author_serializer.AuthorSerializer
     queryset = Author.objects.all()

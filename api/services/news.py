@@ -30,4 +30,3 @@ def edit_news(news_data, new_news_data):
 # Remover notícia
 def delete_news(news):
     news.delete()
-

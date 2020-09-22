@@ -14,7 +14,7 @@ class NewsList(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericV
     queryset = model_news.objects.all()
 
     filter_backends = [filters.SearchFilter]
-    search_fields = ('title', 'content', 'author__name')
+    search_fields = ['title', 'content', 'author__name']
 
     def get(self, request, format=None):
         """Listar Notícias"""
