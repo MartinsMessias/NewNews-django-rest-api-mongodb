@@ -3,7 +3,7 @@
 
 <div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/MartinsMessias/NewNews-django-rest-api)](https://github.com/MartinsMessias/NewNews-django-rest-api)<space> <space>[![GitHub license](https://img.shields.io/github/license/MartinsMessias/NewNews-django-rest-api)](https://github.com/MartinsMessias/NewNews-django-rest-api/blob/master/LICENSE)<space> <space>[![GitHub forks](https://img.shields.io/github/forks/MartinsMessias/NewNews-django-rest-api)](https://github.com/MartinsMessias/NewNews-django-rest-api/)
+[![GitHub stars](https://img.shields.io/github/stars/MartinsMessias/NewNews-django-rest-api-mongodb)](https://github.com/MartinsMessias/NewNews-django-rest-api-mongodb)<space> <space>[![GitHub license](https://img.shields.io/github/license/MartinsMessias/NewNews-django-rest-api-mongodb)](https://github.com/MartinsMessias/NewNews-django-rest-api-mongodb/blob/master/LICENSE)<space> <space>[![GitHub forks](https://img.shields.io/github/forks/MartinsMessias/NewNews-django-rest-api-mongodb)](https://github.com/MartinsMessias/NewNews-django-rest-api-mongodb/)
 
 </div>
 ---
