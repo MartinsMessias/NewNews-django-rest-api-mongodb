@@ -71,7 +71,7 @@ BODY raw
 ---------------------------------------------
 ```
 Pesquisar notícias
-Traz notícias que contenham a query de busca no seu titulo, conteúdo ou nome do autor.
+Traz notícias que contenham a query de busca no seu título, conteúdo ou nome do autor.
 
 GET https://api-newnews.herokuapp.com/news/?search=Silva
 
