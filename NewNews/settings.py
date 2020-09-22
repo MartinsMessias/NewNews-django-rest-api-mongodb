@@ -34,9 +34,9 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('SECRET_KEY')
+SECRET_KEY = os.environ['SECRET_KEY']#env.str('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 ALLOWED_HOSTS = ['api-newnews.herokuapp.com', '127.0.0.1']
 
 
@@ -101,9 +101,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'newnews',
-        'HOST': env.str('DATABASE_HOST'),
-        'USER': env.str('DATABASE_USER'),
-        'PASSWORD': env.str('DATABASE_PASS'),
+        'HOST': os.environ['DATABASE_HOST'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASS'],
     }
 }
 
