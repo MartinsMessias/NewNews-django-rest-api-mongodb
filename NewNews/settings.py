@@ -19,7 +19,6 @@ environ.Env.read_env()
 try:
     import django_heroku
     import dj_database_url
-    import whitenoise
 except ModuleNotFoundError:
     pass
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
