@@ -8,8 +8,8 @@ from ..serializers import news as news_serializer
 from ..services import news as news_service
 from ..entities import news as news_entitie
 
-class NewsList(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
 
+class NewsList(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = news_serializer.NewsSerializer
     queryset = model_news.objects.all()
 
@@ -30,13 +30,18 @@ class NewsList(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericV
 
         if serializer.is_valid():
             title = serializer.validated_data["title"]
-            content = serializer.validated_data["content"]
+            words = serializer.validated_data["content"]
+            filter = ''.join([chr(i) for i in range(1, 32)])
+            content = words.translate(str.maketrans('', '', filter))
             author = serializer.validated_data["author"]
             new_news = news_entitie.News(title=title, content=content, author=author)
             news_service.create_news(new_news)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @classmethod
+    def get_extra_actions(cls):
+        return []
 
 class News(GenericAPIView):
 
@@ -56,7 +61,9 @@ class News(GenericAPIView):
 
         if serializer.is_valid():
             title = serializer.validated_data["title"]
-            content = serializer.validated_data["content"]
+            words = serializer.validated_data["content"]
+            filter = ''.join([chr(i) for i in range(1, 32)])
+            content = words.translate(str.maketrans('', '', filter))
             author = serializer.validated_data["author"]
             new_news = news_entitie.News(title=title, content=content, author=author)
             news_service.edit_news(news, new_news)
