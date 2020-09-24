@@ -25,9 +25,11 @@ Uma api onde é possível cadastrar autores e notícias, também é possível re
 --- 
 
 #### Documentação no Postman
-[Documentação](https://documenter.getpostman.com/view/12776670/TVKD2xL3)
+[Documentação da API](https://documenter.getpostman.com/view/12776670/TVKD2xL3)
 
-[Testar online](https://api-newnews.herokuapp.com/)
+[Documentação do banco de dados](https://drive.google.com/file/d/1DYt1txvJt3WbDD48TFjChFOf9nr4pcUr/view?usp=sharing)
+
+[Testar online com browseable api](https://api-newnews.herokuapp.com/)
 ##### *Aguardar o tempo de carregamento do Heroku.*
 
 ### Documentação básica
