@@ -10,7 +10,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Author
-        fields = ('name', 'links', )
+        fields = ('id', 'name', 'links' )
 
     def get_links(self, obj):
         try:
